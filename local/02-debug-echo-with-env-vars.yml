@@ -1,0 +1,12 @@
+---
+- hosts: my.laptop
+  name: Debug with env vars example
+  gather_facts: False
+  vars:
+    first_name: "Ruan"
+    last_name: "Bekker"
+    full_name: "{{ first_name}} {{ last_name }}"
+  tasks:
+  - name: Debug message with env vars
+    debug:
+      msg: "Welcome {{ full_name }}"

@@ -1,0 +1,9 @@
+---
+- hosts: my.laptop
+  name: File creation example
+  gather_facts: False
+  tasks:
+    - name: Create test.txt file 
+      file:
+        path: /tmp/test.txt
+        state: touch
