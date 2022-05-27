@@ -1,0 +1,17 @@
+---
+- hosts: my.laptop
+  name: validate env vars
+  gather_facts: False
+  vars_files: 
+    - vars/conditionals-vars.yml
+  vars:
+    apikey: "{{ apikey }}"
+  tasks:
+  - name: fail if variable is not defined or var empty
+    fail:
+      msg: "The variable 'apikey' is not defined or empty"
+    when: (apikey is not defined) or (apikey|length == 0)
+
+  - name: continue
+    debug:
+      msg: "the api key exists and is more than 0 characters"

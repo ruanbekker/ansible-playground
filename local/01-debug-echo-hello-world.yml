@@ -1,0 +1,8 @@
+---
+- hosts: my.laptop
+  name: Debug module example
+  gather_facts: False
+  tasks:
+  - name: Return string message hello world
+    debug:
+      msg: "Hello, World!"
