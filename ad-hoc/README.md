@@ -21,7 +21,7 @@ ansible somegroup -m ping
 Becomes:
 
 ```
-ansible -i inventoryfile somegroup -m ping
+ansible -i inventory somegroup -m ping
 ```
 
 ### Ping Module
@@ -32,10 +32,22 @@ Ping all the targets defined in your inventory file:
 $ ansible all -m ping
 ```
 
+Ping the whole group (localhost):
+
+```
+$ ping localhost -m ping
+```
+
 Ping the `my.laptop` target defined in your inventory file:
 
 ```
 $ ansible my.laptop -m ping
+```
+
+Ping only one target in the localhost group:
+
+```
+$ ansible localhost -l my.laptop -m ping
 ```
 
 ### Gather Facts

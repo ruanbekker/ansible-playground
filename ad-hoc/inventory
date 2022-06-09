@@ -1,0 +1,7 @@
+[localhost]
+127.0.0.1      ansible_connection=local
+my.laptop      ansible_connection=local
+my.workstation ansible_connection=local
+
+[localhost:vars]
+deprecation_warnings=False
