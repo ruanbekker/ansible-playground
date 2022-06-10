@@ -107,3 +107,9 @@ Upgrade dist with apt:
 ```
 $ ansible all -m apt -a upgrade=dist --become --ask-become-pass
 ```
+
+Ensure a service is started with systemd:
+
+```
+$ ansible nginx -m systemd -a "name=nginx state=started" --become
+```
