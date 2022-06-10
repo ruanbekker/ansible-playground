@@ -72,7 +72,7 @@ $ ansible all --list-hosts
 
 ## Commands
 
-To run the uptime command on all hosts:
+To run the uptime command on all hosts (note that ansible runs them on 5 hosts at a time on default):
 
 ```
 $ ansible all -m command -a hostname
@@ -82,6 +82,12 @@ When using the shell module when you are using arguments:
 
 ```
 $ ansible all -m shell -a "uptime --help"
+```
+
+If you want to run commands to more than 5 nodes in parallel, you can use for:
+
+```
+$ ansible all -m command -a hostname -f 10
 ```
 
 Update index repositories with apt
@@ -113,3 +119,19 @@ Ensure a service is started with systemd:
 ```
 $ ansible nginx -m systemd -a "name=nginx state=started" --become
 ```
+
+## More Info
+
+To list all the modules you can use `ansible-doc` and to list for ping:
+
+```
+$ ansible-doc -l | grep -i ping
+```
+
+For usage on it:
+
+```
+$ ansible-doc ping
+```
+
+
