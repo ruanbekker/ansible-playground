@@ -17,7 +17,14 @@ pip install ansible==4.4.0
 
 ## Configuration
 
-Your servers will be defined in a inventory file which we will name `inventory`, which can look something like this:
+Our main ansible configuration defined in a `ansible.cfg`, as example:
+
+```
+[defaults]
+inventory = inventory
+```
+
+Your servers will be defined in a inventory file which we will name `inventory`, which can look something like this (as an example):
 
 ```
 [local]
@@ -36,7 +43,13 @@ More info on inventory can be found here:
 
 ## Verifying Connectivity
 
-Let's start with the `inventory` file:
+Change to the local directory:
+
+```
+$ cd local
+```
+
+Let's review our `inventory` file:
 
 ```
 [localhost]
@@ -44,7 +57,9 @@ my.laptop       ansible_connection=local
 my.workstation  ansible_connection=local
 ```
 
-And then we can use the `ping` module, to ensure that ansible can reach our `localhost` group or `my.laptop` target.
+Which you can see is using the local `ansible_connection`. You get a `ssh` and `local` connection, and for the demonstration we will be using the local connection as a starting point.
+
+Now we can use the `ping` module, to ensure that ansible can reach our `localhost` group or `my.laptop` target.
 
 To target the host only:
 
@@ -79,10 +94,18 @@ my.laptop | SUCCESS => {
 }
 ```
 
+Because we defined `inventory = inventory` under our `[defaults]` section in our `ansible.cfg`, we can remove the inventory argument, which results in:
+
+```
+$ ansible localhost -m ping
+```
+
 ## Running Ad-Hoc Commands
 
 See [ad-hoc](ad-hoc/README.md)
 
-## Working with Local 
+## Provisioning Servers
+
+We can use [multipass](https://multipass.run/) to provision ubuntu vms, to follow the example for multipass, head over to [extras/multipass](extras/multipass/README.md)
 
 
